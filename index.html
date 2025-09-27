@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> A Singer Latina</title>
+    <title>Singer Latina</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Reset */
+        /* Importação de fontes e reset */
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +23,7 @@
             background-color: #f4f4f4;
         }
 
-        /* Hero */
+        /* Seção de cabeçalho (hero) */
         .hero-section {
             background-color: #3e3e3e;
             color: #fff;
@@ -30,6 +32,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .logo img {
@@ -64,7 +71,7 @@
             margin-right: 8px;
         }
 
-        /* Serviços */
+        /* Seção de serviços */
         .services-section {
             display: flex;
             justify-content: center;
@@ -91,6 +98,12 @@
             margin-bottom: 15px;
         }
 
+        .service-card p {
+            font-size: 1.1em;
+            max-width: 150px;
+        }
+
+        /* Telefone central */
         .phone-highlight {
             display: flex;
             align-items: center;
@@ -111,17 +124,18 @@
             margin-right: 10px;
         }
 
+        /* Seção de produtos e depoimentos */
+        .products-section, .testimonials-section, .faq-section, .location-section {
+            padding: 40px 5%;
+        }
+
         h2 {
             font-size: 2em;
             margin-bottom: 30px;
             text-align: center;
         }
 
-        /* FAQ */
-        .faq-section {
-            padding: 40px 5%;
-        }
-
+        /* Estilos do Acordeão (FAQ) */
         .faq-accordion {
             max-width: 800px;
             margin: 0 auto;
@@ -132,6 +146,10 @@
 
         .faq-item {
             border-bottom: 1px solid #ddd;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
         }
 
         .faq-question {
@@ -152,6 +170,11 @@
             font-weight: 700;
         }
 
+        .faq-question i {
+            color: #3e3e3e;
+            font-size: 1.2em;
+        }
+
         .faq-answer {
             background-color: #fff;
             padding: 0 15px;
@@ -160,36 +183,76 @@
             transition: max-height 0.3s ease-out, padding 0.3s ease-out;
         }
 
+        .faq-answer p {
+            padding: 0;
+            margin: 10px 0;
+        }
+
         .faq-question.active + .faq-answer {
             max-height: 200px;
             padding: 0 15px 15px;
         }
-
-        /* Slider de produtos */
-        .products-section {
+        
+        /* Seção da Localização */
+        .location-section {
             padding: 40px 5%;
+            background-color: #fff;
+            text-align: center;
         }
 
-        .slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
+        .location-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .slider {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
+        .address-details {
+            margin-top: 20px;
+        }
+
+        .address-details p {
+            margin: 5px 0;
+        }
+
+        .directions-btn {
+            display: inline-block;
+            background-color: #3e3e3e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .directions-btn:hover {
+            background-color: #555;
+        }
+
+        .directions-btn i {
+            margin-right: 8px;
+        }
+
+        /* Seção de produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .product-card {
-            min-width: 300px;
-            margin: 0 10px;
-            background: #fff;
+            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .product-card img {
@@ -201,8 +264,9 @@
 
         .product-card .price {
             font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-weight: 700;
+            color: #3e3e3e;
+            margin-bottom: 15px;
         }
 
         .btn-product {
@@ -219,37 +283,17 @@
             background-color: #555;
         }
 
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 1.2em;
-        }
-
-        .slider-btn.left {
-            left: 10px;
-        }
-
-        .slider-btn.right {
-            right: 10px;
-        }
-
-        /* Depoimentos */
-        .testimonials-section {
-            padding: 40px 5%;
-        }
-
+        /* Seção de depoimentos */
         .testimonial-content {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 30px;
+        }
+
+        .video-container {
+            flex: 1;
+            min-width: 300px;
         }
 
         .video-container video {
@@ -259,7 +303,7 @@
 
         .quotes-container {
             flex: 2;
-            background: #fff;
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -268,44 +312,33 @@
         .quotes-container blockquote {
             font-style: italic;
             margin-bottom: 15px;
-        }
-
-        /* Localização */
-        .location-section {
-            padding: 40px 5%;
-            background: #fff;
-            text-align: center;
-        }
-
-        .location-image {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .directions-btn {
-            display: inline-block;
-            background: #3e3e3e;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .directions-btn:hover {
-            background: #555;
+            line-height: 1.4;
         }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .services-section {
                 flex-direction: column;
-                gap: 20px;
+                align-items: center;
+                margin: 0 20px;
             }
-            .product-card {
-                min-width: 250px;
+            .service-card {
+                flex-direction: row;
+                gap: 20px;
+                text-align: left;
+            }
+            .phone-highlight {
+                font-size: 1.4em;
+                padding: 15px 20px;
+            }
+            .hero-content h2 {
+                font-size: 1.5em;
+            }
+            .testimonial-content {
+                flex-direction: column;
+            }
+            .location-image {
+                max-width: 100%;
             }
         }
     </style>
@@ -314,10 +347,10 @@
 
     <header class="hero-section">
         <div class="logo">
-            <img src="logo.png" alt="Logo Singer Latina">
+           <img src="logo.png" alt="Logo Singer Latina" style="max-width:200px;">
         </div>
         <div class="hero-content">
-            <h2>Manutenção de Máquinas de Costura Doméstica e Purificadores de Água</h2>
+            <h2>Serviços especializados de conserto e manutenção para sua máquina de costura doméstica e purificadores de água.</h2>
             <a href="https://wa.me/5511980984748" class="whatsapp-btn">
                 <i class="fab fa-whatsapp"></i> Fale conosco pelo WhatsApp
             </a>
@@ -328,7 +361,7 @@
         <section class="services-section">
             <div class="service-card">
                 <i class="fas fa-screwdriver-wrench"></i>
-                <p>Atendemos no local e residencial</p>
+                <p>Atendemos à domicílio e no espaço</p>
             </div>
 
             <div class="phone-highlight">
@@ -345,42 +378,55 @@
             <h2>Dúvidas Frequentes</h2>
             <div class="faq-accordion">
                 <div class="faq-item">
-                    <div class="faq-question"><span>Onde fica a loja física?</span><i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p>O local é uma residência entre as avenidas Cangaíba e Governador Carvalho Pinto.</p></div>
+                    <div class="faq-question">
+                        <span>Onde fica a loja física?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Na verdade, o local é uma residência. Ela fica entre a Avenidas Cangaíba e Governador Carvalho Pinto.</p>
+                    </div>
                 </div>
+
                 <div class="faq-item">
-                    <div class="faq-question"><span>Quais regiões você atende?</span><i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p>Boa parte da Zona Leste 1 (Cangaíba, Vila Matilde, Arthur Alvim, Penha, Ponte Rasa).</p></div>
+                    <div class="faq-question">
+                        <span>Quais regiões você atende?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Em boa parte da Zona Leste 1 (Cangaíba, Vila Matilde, Arthur Alvim, Penha, Ponte Rasa).</p>
+                    </div>
                 </div>
+
                 <div class="faq-item">
-                    <div class="faq-question"><span>Como funciona o atendimento à domicílio?</span><i class="fas fa-plus"></i></div>
-                    <div class="faq-answer"><p>Após o contato do cliente, o técnico vai até o local para orçamento ou reparo imediato.</p></div>
+                    <div class="faq-question">
+                        <span>Como funciona o atendimento à domicílio?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Após o cliente entrar em contato por telefone ou mensagem e desejar uma visita, o técnico irá ao local marcado para realizar o orçamento, ou até mesmo o reparo do aparelho.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="products-section">
-            <h2>Produtos à Venda</h2>
-            <div class="slider-container">
-                <button class="slider-btn left"><i class="fas fa-chevron-left"></i></button>
-                <div class="slider">
-                    <div class="product-card">
-                        <img src="caminho/para/imagem1.jpg" alt="Máquina de Costura Branca">
-                        <p class="price">R$ 450</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
-                    <div class="product-card">
-                        <img src="caminho/para/imagem2.jpg" alt="Purificador de Água">
-                        <p class="price">R$ 790</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
-                    <div class="product-card">
-                        <img src="caminho/para/imagem3.jpg" alt="Máquina de Costura Preta">
-                        <p class="price">R$ 370</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
+            <h2>Produtos à venda</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="caminho/para/imagem1.jpg" alt="Máquina de Costura Branca">
+                    <p class="price">R$ 450</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
                 </div>
-                <button class="slider-btn right"><i class="fas fa-chevron-right"></i></button>
+                <div class="product-card">
+                    <img src="caminho/para/imagem2.jpg" alt="Purificador de Água">
+                    <p class="price">R$ 790</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
+                </div>
+                <div class="product-card">
+                    <img src="caminho/para/imagem3.jpg" alt="Máquina de Costura Preta">
+                    <p class="price">R$ 370</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
+                </div>
             </div>
         </section>
 
@@ -395,8 +441,8 @@
                 </div>
                 <div class="quotes-container">
                     <blockquote>"Ótima experiência! Recomendo a todos!"</blockquote>
-                    <blockquote>"Profissionais incríveis! Fizeram um excelente trabalho."</blockquote>
-                    <blockquote>"Serviço de alta qualidade e rápido!"</blockquote>
+                    <blockquote>"Profissionais incríveis! Fizeram um excelente trabalho na minha máquina."</blockquote>
+                    <blockquote>"Serviço de alta qualidade! Atendimento rápido e eficiente."</blockquote>
                 </div>
             </div>
         </section>
@@ -404,46 +450,45 @@
         <section class="location-section">
             <h2>Nossa Localização</h2>
             <img src="imagem-local.jpg" alt="Imagem do local da loja" class="location-image">
-            <p><strong>A Singer Latina</strong></p>
-            <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
-                <i class="fas fa-map-marked-alt"></i> Obter Rotas
-            </a>
+            <div class="address-details">
+                <p><strong>A Singer Latina</strong></p>
+                <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
+                    <i class="fas fa-map-marked-alt"></i> Obter Rotas
+                </a>
+            </div>
         </section>
+
     </main>
     
     <script>
-        /* FAQ toggle */
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const icon = question.querySelector('i');
+                
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                        otherQuestion.classList.remove('active');
+                        otherQuestion.nextElementSibling.style.maxHeight = '0';
+                        otherQuestion.querySelector('i').classList.remove('fa-minus');
+                        otherQuestion.querySelector('i').classList.add('fa-plus');
+                    }
+                });
+
                 question.classList.toggle('active');
                 if (question.classList.contains('active')) {
                     answer.style.maxHeight = answer.scrollHeight + 'px';
-                    icon.classList.replace('fa-plus', 'fa-minus');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
                 } else {
                     answer.style.maxHeight = '0';
-                    icon.classList.replace('fa-minus', 'fa-plus');
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
                 }
             });
-        });
-
-        /* Slider */
-        const slider = document.querySelector('.slider');
-        const leftBtn = document.querySelector('.slider-btn.left');
-        const rightBtn = document.querySelector('.slider-btn.right');
-        let scrollAmount = 0;
-
-        rightBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: 320, behavior: 'smooth' });
-        });
-
-        leftBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -320, behavior: 'smooth' });
         });
     </script>
 </body>
 </html>
-
