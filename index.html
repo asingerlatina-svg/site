@@ -179,7 +179,9 @@
 
         .slider {
             display: flex;
-            transition: transform 0.4s ease-in-out;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         .product-card {
@@ -190,6 +192,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
             padding: 20px;
+            flex-shrink: 0;
         }
 
         .product-card img {
@@ -230,6 +233,7 @@
             cursor: pointer;
             border-radius: 50%;
             font-size: 1.2em;
+            z-index: 10;
         }
 
         .slider-btn.left {
@@ -379,7 +383,6 @@
                         <p class="price">R$ 370</p>
                         <a href="#" class="btn-product">Veja mais</a>
                     </div>
-                    <!-- Novos produtos adicionados -->
                     <div class="product-card">
                         <img src="caminho/para/imagem4.jpg" alt="Máquina de Costura Vermelha">
                         <p class="price">R$ 500</p>
@@ -446,17 +449,18 @@
             });
         });
 
-        /* Slider */
+        /* Slider funcional */
         const slider = document.querySelector('.slider');
         const leftBtn = document.querySelector('.slider-btn.left');
         const rightBtn = document.querySelector('.slider-btn.right');
+        const cardWidth = document.querySelector('.product-card').offsetWidth + 20; // 20px = margem horizontal
 
         rightBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: 320, behavior: 'smooth' });
+            slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
         });
 
         leftBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -320, behavior: 'smooth' });
+            slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
         });
     </script>
 </body>
