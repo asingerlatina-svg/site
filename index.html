@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singer Latina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Importação de fontes e reset */
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Seção de cabeçalho (hero) */
+        .hero-section {
+            background-color: #3e3e3e;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8em;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.4;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+
+        /* Seção de serviços */
+        .services-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-20px);
+            margin: 0 5%;
+            border-radius: 10px;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .service-card i {
+            font-size: 3em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 1.1em;
+            max-width: 150px;
+        }
+
+        /* Seção de produtos e depoimentos */
+        .products-section, .testimonials-section, .faq-section, .location-section {
+            padding: 40px 5%;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Estilos do Acordeão (FAQ) */
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            background-color: #f9f9f9;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f1f1f1;
+        }
+
+        .faq-question span {
+            font-weight: 700;
+        }
+
+        .faq-question i {
+            color: #3e3e3e;
+            font-size: 1.2em;
+        }
+
+        .faq-answer {
+            background-color: #fff;
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .faq-answer p {
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .faq-question.active + .faq-answer {
+            max-height: 200px;
+            padding: 0 15px 15px;
+        }
+        
+        /* Seção da Localização */
+        .location-section {
+            padding: 40px 5%;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .location-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .address-details {
+            margin-top: 20px;
+        }
+
+        .address-details p {
+            margin: 5px 0;
+        }
+
+        .directions-btn {
+            display: inline-block;
+            background-color: #3e3e3e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .directions-btn:hover {
+            background-color: #555;
+        }
+
+        .directions-btn i {
+            margin-right: 8px;
+        }
+
+        /* Seção de produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .product-card .price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #3e3e3e;
+            margin-bottom: 15px;
+        }
+
+        .btn-product {
+            background-color: #3e3e3e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-product:hover {
+            background-color: #555;
+        }
+
+        /* Seção de depoimentos */
+        .testimonial-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .video-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .quotes-container {
+            flex: 2;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .quotes-container blockquote {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .services-section {
+                flex-direction: column;
+                align-items: center;
+                margin: 0 20px;
+            }
+            .service-card {
+                flex-direction: row;
+                gap: 20px;
+                text-align: left;
+            }
+            .hero-content h2 {
+                font-size: 1.5em;
+            }
+            .testimonial-content {
+                flex-direction: column;
+            }
+            .location-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="logo">
+           <img src="logo.png" alt="Logo Singer Latina" style="max-width:200px;">
+        </div>
+        <div class="hero-content">
+            <h2>Serviços especializados de conserto e manutenção para sua máquina de costura doméstica e purificadores de água.</h2>
+            <a href="https://wa.me/5511980984748" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Fale conosco pelo WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="services-section">
+            <div class="service-card">
+                <i class="fas fa-screwdriver-wrench"></i>
+                <p>Atendemos à domicílio e no espaço</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tint"></i>
+                <p>Orçamento sem compromisso</p>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Dúvidas Frequentes</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Onde fica a loja física?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Na verdade, o local é uma residência. Ela fica entre a Avenidas Cangaíba e Governador Carvalho Pinto.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais regiões você atende?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Em boa parte da Zona Leste 1 (Cangaíba, Vila Matilde, Arthur Alvim, Penha, Ponte Rasa).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o atendimento à domicílio?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Após o cliente entrar em contato por telefone ou mensagem e desejar uma visita, o técnico irá ao local marcado para realizar o orçamento, ou até mesmo o reparo do aparelho.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <h2>Produtos à venda</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="caminho/para/imagem1.jpg" alt="Máquina de Costura Branca">
+                    <p class="price">R$ 450</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
+                </div>
+                <div class="product-card">
+                    <img src="caminho/para/imagem2.jpg" alt="Purificador de Água">
+                    <p class="price">R$ 790</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
+                </div>
+                <div class="product-card">
+                    <img src="caminho/para/imagem3.jpg" alt="Máquina de Costura Preta">
+                    <p class="price">R$ 370</p>
+                    <a href="#" class="btn-product">Quero saber mais</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <h2>Depoimentos</h2>
+            <div class="testimonial-content">
+                <div class="video-container">
+                    <video controls>
+                        <source src="caminho/para/video.mp4" type="video/mp4">
+                        Seu navegador não suporta a tag de vídeo.
+                    </video>
+                </div>
+                <div class="quotes-container">
+                    <blockquote>"Ótima experiência! Recomendo a todos!"</blockquote>
+                    <blockquote>"Profissionais incríveis! Fizeram um excelente trabalho na minha máquina."</blockquote>
+                    <blockquote>"Serviço de alta qualidade! Atendimento rápido e eficiente."</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-section">
+            <h2>Nossa Localização</h2>
+            <img src="imagem-local.jpg" alt="Imagem do local da loja" class="location-image">
+            <div class="address-details">
+                <p><strong>A Singer Latina</strong></p>
+                <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
+                    <i class="fas fa-map-marked-alt"></i> Obter Rotas
+                </a>
+            </div>
+        </section>
+
+    </main>
+    
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                        otherQuestion.classList.remove('active');
+                        otherQuestion.nextElementSibling.style.maxHeight = '0';
+                        otherQuestion.querySelector('i').classList.remove('fa-minus');
+                        otherQuestion.querySelector('i').classList.add('fa-plus');
+                    }
+                });
+
+                question.classList.toggle('active');
+                if (question.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    answer.style.maxHeight = '0';
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
