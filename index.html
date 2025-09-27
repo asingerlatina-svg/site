@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Singer Latina</title>
+    <title> A Singer Latina</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         /* Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Open Sans', sans-serif;
@@ -27,7 +32,10 @@
             align-items: center;
         }
 
-        .logo img { max-width: 200px; height: auto; }
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
 
         .hero-content h2 {
             font-size: 1.8em;
@@ -48,8 +56,13 @@
             transition: background-color 0.3s ease;
         }
 
-        .whatsapp-btn:hover { background-color: #128c7e; }
-        .whatsapp-btn i { margin-right: 8px; }
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
 
         /* Serviços */
         .services-section {
@@ -64,8 +77,19 @@
             border-radius: 10px;
         }
 
-        .service-card { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
-        .service-card i { font-size: 3em; color: #555; margin-bottom: 15px; }
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .service-card i {
+            font-size: 3em;
+            color: #555;
+            margin-bottom: 15px;
+        }
 
         .phone-highlight {
             display: flex;
@@ -82,14 +106,34 @@
             min-width: 260px;
         }
 
-        .phone-highlight i { color: #25d366; margin-right: 10px; }
+        .phone-highlight i {
+            color: #25d366;
+            margin-right: 10px;
+        }
 
-        h2 { font-size: 2em; margin-bottom: 30px; text-align: center; }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
         /* FAQ */
-        .faq-section { padding: 40px 5%; }
-        .faq-accordion { max-width: 800px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
-        .faq-item { border-bottom: 1px solid #ddd; }
+        .faq-section {
+            padding: 40px 5%;
+        }
+
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+        }
+
         .faq-question {
             background-color: #f9f9f9;
             padding: 15px;
@@ -99,8 +143,15 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .faq-question:hover { background-color: #f1f1f1; }
-        .faq-question span { font-weight: 700; }
+
+        .faq-question:hover {
+            background-color: #f1f1f1;
+        }
+
+        .faq-question span {
+            font-weight: 700;
+        }
+
         .faq-answer {
             background-color: #fff;
             padding: 0 15px;
@@ -108,19 +159,29 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out, padding 0.3s ease-out;
         }
+
         .faq-question.active + .faq-answer {
             max-height: 200px;
             padding: 0 15px 15px;
         }
 
         /* Slider de produtos */
-        .products-section { padding: 40px 5%; }
-        .slider-container { position: relative; max-width: 1000px; margin: auto; overflow: hidden; }
+        .products-section {
+            padding: 40px 5%;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: auto;
+            overflow: hidden;
+        }
+
         .slider {
             display: flex;
-            overflow-x: hidden; /* Remove a barra de rolagem */
-            scroll-behavior: smooth;
+            transition: transform 0.4s ease-in-out;
         }
+
         .product-card {
             min-width: 300px;
             margin: 0 10px;
@@ -129,15 +190,21 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
             padding: 20px;
-            flex-shrink: 0;
         }
+
         .product-card img {
             width: 100%;
             max-height: 200px;
             object-fit: contain;
             margin-bottom: 15px;
         }
-        .product-card .price { font-size: 1.5em; font-weight: bold; margin-bottom: 10px; }
+
+        .product-card .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         .btn-product {
             background-color: #3e3e3e;
             color: #fff;
@@ -147,7 +214,11 @@
             font-weight: 700;
             transition: background-color 0.3s ease;
         }
-        .btn-product:hover { background-color: #555; }
+
+        .btn-product:hover {
+            background-color: #555;
+        }
+
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -159,17 +230,33 @@
             cursor: pointer;
             border-radius: 50%;
             font-size: 1.2em;
-            z-index: 10;
-            transition: opacity 0.3s;
         }
-        .slider-btn.left { left: 10px; }
-        .slider-btn.right { right: 10px; }
-        .slider-btn.hidden { opacity: 0; pointer-events: none; }
+
+        .slider-btn.left {
+            left: 10px;
+        }
+
+        .slider-btn.right {
+            right: 10px;
+        }
 
         /* Depoimentos */
-        .testimonials-section { padding: 40px 5%; }
-        .testimonial-content { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; }
-        .video-container video { width: 100%; border-radius: 8px; }
+        .testimonials-section {
+            padding: 40px 5%;
+        }
+
+        .testimonial-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
         .quotes-container {
             flex: 2;
             background: #fff;
@@ -177,11 +264,26 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .quotes-container blockquote { font-style: italic; margin-bottom: 15px; }
+
+        .quotes-container blockquote {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
 
         /* Localização */
-        .location-section { padding: 40px 5%; background: #fff; text-align: center; }
-        .location-image { width: 100%; max-width: 800px; border-radius: 8px; margin-bottom: 20px; }
+        .location-section {
+            padding: 40px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .location-image {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
         .directions-btn {
             display: inline-block;
             background: #3e3e3e;
@@ -191,16 +293,25 @@
             text-decoration: none;
             font-weight: 700;
         }
-        .directions-btn:hover { background-color: #555; }
+
+        .directions-btn:hover {
+            background: #555;
+        }
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .services-section { flex-direction: column; gap: 20px; }
-            .product-card { min-width: 250px; }
+            .services-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .product-card {
+                min-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
+
     <header class="hero-section">
         <div class="logo">
             <img src="logo.png" alt="Logo Singer Latina">
@@ -268,21 +379,6 @@
                         <p class="price">R$ 370</p>
                         <a href="#" class="btn-product">Veja mais</a>
                     </div>
-                    <div class="product-card">
-                        <img src="caminho/para/imagem4.jpg" alt="Máquina de Costura Vermelha">
-                        <p class="price">R$ 500</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
-                    <div class="product-card">
-                        <img src="caminho/para/imagem5.jpg" alt="Purificador de Água Compacto">
-                        <p class="price">R$ 650</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
-                    <div class="product-card">
-                        <img src="caminho/para/imagem6.jpg" alt="Máquina de Costura Industrial">
-                        <p class="price">R$ 1.200</p>
-                        <a href="#" class="btn-product">Veja mais</a>
-                    </div>
                 </div>
                 <button class="slider-btn right"><i class="fas fa-chevron-right"></i></button>
             </div>
@@ -315,9 +411,9 @@
             </a>
         </section>
     </main>
-
+    
     <script>
-        // FAQ toggle
+        /* FAQ toggle */
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
             question.addEventListener('click', () => {
@@ -334,24 +430,20 @@
             });
         });
 
-        // Slider funcional com setas dinâmicas
+        /* Slider */
         const slider = document.querySelector('.slider');
         const leftBtn = document.querySelector('.slider-btn.left');
         const rightBtn = document.querySelector('.slider-btn.right');
-        const cardWidth = document.querySelector('.product-card').offsetWidth + 20;
+        let scrollAmount = 0;
 
-        function updateArrows() {
-            if (slider.scrollLeft <= 0) leftBtn.classList.add('hidden');
-            else leftBtn.classList.remove('hidden');
+        rightBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 320, behavior: 'smooth' });
+        });
 
-            if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) rightBtn.classList.add('hidden');
-            else rightBtn.classList.remove('hidden');
-        }
-
-        rightBtn.addEventListener('click', () => { slider.scrollBy({ left: cardWidth, behavior: 'smooth' }); });
-        leftBtn.addEventListener('click', () => { slider.scrollBy({ left: -cardWidth, behavior: 'smooth' }); });
-        slider.addEventListener('scroll', updateArrows);
-        updateArrows();
+        leftBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -320, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
+
