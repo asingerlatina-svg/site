@@ -1,22 +1,268 @@
-<script>
-  /* Slider */
-  const slider = document.querySelector('.slider');
-  const leftBtn = document.querySelector('.slider-btn.left');
-  const rightBtn = document.querySelector('.slider-btn.right');
-  let currentIndex = 0;
-  const totalItems = document.querySelectorAll('.product-card').length;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singer Latina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; color: #333; background-color: #f4f4f4; }
 
-  rightBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalItems; // volta ao primeiro quando chega no fim
-    updateSlider();
-  });
+    /* Hero */
+    .hero-section {
+      background-color: #3e3e3e; color: #fff; text-align: center;
+      padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
+    }
+    .logo img { max-width: 200px; height: auto; }
+    .hero-content h2 { font-size: 1.8em; max-width: 600px; margin: 20px auto; line-height: 1.4; }
+    .whatsapp-btn {
+      display: inline-block; background-color: #25d366; color: #fff;
+      padding: 12px 25px; border-radius: 50px; text-decoration: none;
+      font-weight: 700; margin-top: 20px; transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn:hover { background-color: #128c7e; }
+    .whatsapp-btn i { margin-right: 8px; }
 
-  leftBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems; // volta ao último quando está no início
-    updateSlider();
-  });
-</script>
+    /* Serviços */
+    .services-section {
+      display: flex; justify-content: center; gap: 30px;
+      padding: 40px 20px; background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transform: translateY(-20px); margin: 0 5%; border-radius: 10px;
+    }
+    .service-card {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 1;
+    }
+    .service-card i { font-size: 3em; color: #555; margin-bottom: 15px; }
+    .phone-highlight {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8em; font-weight: bold; color: #3e3e3e;
+      background: #f9f9f9; padding: 20px 30px; border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center; min-width: 260px;
+    }
+    .phone-highlight i { color: #25d366; margin-right: 10px; }
+
+    h2 { font-size: 2em; margin-bottom: 30px; text-align: center; }
+
+    /* Produtos - Slider */
+    .products-section { padding: 40px 5%; position: relative; }
+    .slider-container {
+      max-width: 400px; margin: auto; overflow: hidden; position: relative;
+    }
+    .slider { display: flex; transition: transform 0.5s ease-in-out; }
+    .product-card {
+      min-width: 100%; background: #fff; border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center; padding: 20px;
+    }
+    .product-card img {
+      width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 15px;
+    }
+    .product-card .price { font-size: 1.5em; font-weight: 700; margin-bottom: 15px; }
+    .btn-product {
+      background-color: #3e3e3e; color: #fff;
+      padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 700;
+    }
+    .btn-product:hover { background-color: #555; }
+
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: #fff;
+      border: none; padding: 10px 15px; cursor: pointer;
+      border-radius: 50%; font-size: 1.2em;
+    }
+    .slider-btn.left { left: 10px; }
+    .slider-btn.right { right: 10px; }
+
+    /* FAQ */
+    .faq-section { padding: 40px 5%; }
+    .faq-accordion {
+      max-width: 800px; margin: auto; border: 1px solid #ddd; border-radius: 8px;
+    }
+    .faq-item { border-bottom: 1px solid #ddd; }
+    .faq-question {
+      background: #f9f9f9; padding: 15px; display: flex;
+      justify-content: space-between; cursor: pointer;
+    }
+    .faq-answer {
+      background: #fff; padding: 0 15px;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .faq-question.active + .faq-answer { max-height: 200px; padding-bottom: 15px; }
+
+    /* Depoimentos */
+    .testimonials-section { padding: 40px 5%; }
+    .testimonial-content { display: flex; flex-wrap: wrap; gap: 30px; }
+    .video-container { flex: 1; min-width: 300px; }
+    .video-container video { width: 100%; border-radius: 8px; }
+    .quotes-container { flex: 2; background: #fff; padding: 20px; border-radius: 8px; }
+
+    /* Localização */
+    .location-section { padding: 40px 5%; background: #fff; text-align: center; }
+    .location-image { width: 100%; max-width: 800px; border-radius: 8px; margin-bottom: 20px; }
+    .address-details { margin-top: 20px; }
+    .address-details p { margin: 5px 0; }
+    .directions-btn {
+      display: inline-block; background: #3e3e3e; color: #fff;
+      padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 700;
+      margin-top: 15px;
+    }
+    .directions-btn:hover { background: #555; }
+
+    @media (max-width: 768px) {
+      .services-section { flex-direction: column; gap: 20px; }
+      .phone-highlight { font-size: 1.4em; padding: 15px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-section">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Singer Latina">
+    </div>
+    <div class="hero-content">
+      <h2>Manutenção de Máquinas de Costura Doméstica e Purificadores de Água</h2>
+      <a href="https://wa.me/5511980984748" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> Agende uma visita por WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="services-section">
+      <div class="service-card">
+        <i class="fas fa-screwdriver-wrench"></i>
+        <p>Máquinas SINGER</p>
+      </div>
+      <div class="phone-highlight">
+        <p><i class="fas fa-phone-alt"></i> (11) 98098-4748</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-tint"></i>
+        <p>Purificadores LATINA</p>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2>Produtos à Venda</h2>
+      <div class="slider-container">
+        <button class="slider-btn left"><i class="fas fa-chevron-left"></i></button>
+        <div class="slider">
+          <div class="product-card">
+            <img src="caminho/para/imagem1.jpg" alt="Máquina de Costura Branca">
+            <p class="price">R$ 450</p>
+            <a href="#" class="btn-product">Comprar</a>
+          </div>
+          <div class="product-card">
+            <img src="caminho/para/imagem2.jpg" alt="Purificador de Água">
+            <p class="price">R$ 790</p>
+            <a href="#" class="btn-product">Comprar</a>
+          </div>
+          <div class="product-card">
+            <img src="caminho/para/imagem3.jpg" alt="Máquina de Costura Preta">
+            <p class="price">R$ 370</p>
+            <a href="#" class="btn-product">Comprar</a>
+          </div>
+        </div>
+        <button class="slider-btn right"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2>Dúvidas Frequentes</h2>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <div class="faq-question"><span>Onde fica a Assistência Técnica?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-answer"><p>É um estabelecimento residencial que fica entre as Avenidas Cangaíba e Governador Carvalho Pinto.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><span>Quais regiões você atende?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-answer"><p>Em boa parte da Zona Leste 1 (Cangaíba, Vila Matilde, Arthur Alvim, Penha, Ponte Rasa).</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><span>Como funciona o atendimento à domicílio?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-answer"><p>Após o cliente entrar em contato por telefone ou mensagem, o técnico irá ao local para realizar o serviço.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials-section">
+      <h2>Depoimentos</h2>
+      <div class="testimonial-content">
+        <div class="video-container">
+          <video controls>
+            <source src="caminho/para/video.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+          </video>
+        </div>
+        <div class="quotes-container">
+          <blockquote>"Ótima experiência! Recomendo a todos!"</blockquote>
+          <blockquote>"Profissionais incríveis! Fizeram um excelente trabalho na minha máquina."</blockquote>
+          <blockquote>"Serviço de alta qualidade! Atendimento rápido e eficiente."</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-section">
+      <h2>Nossa Localização</h2>
+      <img src="imagem-local.jpg" alt="Imagem do local da loja" class="location-image">
+      <div class="address-details">
+        <p><strong>A Singer Latina</strong></p>
+        <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
+          <i class="fas fa-map-marked-alt"></i> Obter Rotas
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* FAQ toggle */
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        question.classList.toggle('active');
+        if (question.classList.contains('active')) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          icon.classList.replace('fa-plus', 'fa-minus');
+        } else {
+          answer.style.maxHeight = '0';
+          icon.classList.replace('fa-minus', 'fa-plus');
+        }
+      });
+    });
+
+    /* Slider circular */
+    const slider = document.querySelector('.slider');
+    const leftBtn = document.querySelector('.slider-btn.left');
+    const rightBtn = document.querySelector('.slider-btn.right');
+    let currentIndex = 0;
+    const totalItems = document.querySelectorAll('.product-card').length;
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    rightBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateSlider();
+    });
+
+    leftBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateSlider();
+    });
+  </script>
+</body>
+</html>
+
+
