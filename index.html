@@ -54,7 +54,14 @@
     .slider-container {
       max-width: 400px; margin: auto; overflow: hidden; position: relative;
     }
-    .slider { display: flex; transition: transform 0.5s ease-in-out; }
+
+    /* garantir que o slider fique abaixo dos botões */
+    .slider {
+      display: flex; transition: transform 0.5s ease-in-out;
+      z-index: 1; /* abaixo dos botões */
+      position: relative;
+    }
+
     .product-card {
       min-width: 100%; background: #fff; border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -72,28 +79,24 @@
 
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.5); color: #fff;
+      background: rgba(0,0,0,0.55); color: #fff;
       border: none; padding: 10px 15px; cursor: pointer;
       border-radius: 50%; font-size: 1.2em;
+      z-index: 999; /* colocar os botões na frente de tudo */
+      display: flex; align-items: center; justify-content: center;
     }
     .slider-btn.left { left: 10px; }
     .slider-btn.right { right: 10px; }
 
+    /* deixar foco visível para acessibilidade */
+    .slider-btn:focus { outline: 3px solid rgba(37,211,102,0.25); }
+
     /* FAQ */
     .faq-section { padding: 40px 5%; }
-    .faq-accordion {
-      max-width: 800px; margin: auto; border: 1px solid #ddd; border-radius: 8px;
-    }
+    .faq-accordion { max-width: 800px; margin: auto; border: 1px solid #ddd; border-radius: 8px; }
     .faq-item { border-bottom: 1px solid #ddd; }
-    .faq-question {
-      background: #f9f9f9; padding: 15px; display: flex;
-      justify-content: space-between; cursor: pointer;
-    }
-    .faq-answer {
-      background: #fff; padding: 0 15px;
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
+    .faq-question { background: #f9f9f9; padding: 15px; display: flex; justify-content: space-between; cursor: pointer; }
+    .faq-answer { background: #fff; padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .faq-question.active + .faq-answer { max-height: 200px; padding-bottom: 15px; }
 
     /* Depoimentos */
@@ -153,7 +156,7 @@
     <section class="products-section">
       <h2>Produtos à Venda</h2>
       <div class="slider-container">
-        <button class="slider-btn left"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn left" aria-label="Produto anterior"><i class="fas fa-chevron-left"></i></button>
         <div class="slider">
           <div class="product-card">
             <img src="caminho/para/imagem1.jpg" alt="Máquina de Costura Branca">
@@ -171,7 +174,7 @@
             <a href="#" class="btn-product">Comprar</a>
           </div>
         </div>
-        <button class="slider-btn right"><i class="fas fa-chevron-right"></i></button>
+        <button class="slider-btn right" aria-label="Próximo produto"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
 
@@ -241,12 +244,13 @@
       });
     });
 
-    /* Slider circular */
+    /* Slider circular (1 por vez) */
     const slider = document.querySelector('.slider');
     const leftBtn = document.querySelector('.slider-btn.left');
     const rightBtn = document.querySelector('.slider-btn.right');
     let currentIndex = 0;
-    const totalItems = document.querySelectorAll('.product-card').length;
+    const items = document.querySelectorAll('.product-card');
+    const totalItems = items.length;
 
     function updateSlider() {
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -264,5 +268,3 @@
   </script>
 </body>
 </html>
-
-
