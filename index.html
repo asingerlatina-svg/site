@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Singer Latina</title>
+  <title>Singer Latina</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -27,16 +27,13 @@
       flex-direction: column;
       align-items: center;
     }
-
     .logo img { max-width: 200px; height: auto; }
-
     .hero-content h2 {
       font-size: 1.8em;
       max-width: 600px;
       margin: 20px auto;
       line-height: 1.4;
     }
-
     .whatsapp-btn {
       display: inline-block;
       background-color: #25d366;
@@ -68,8 +65,6 @@
       align-items: center; text-align: center; flex: 1;
     }
     .service-card i { font-size: 3em; color: #555; margin-bottom: 15px; }
-
-    /* Telefone */
     .phone-highlight {
       display: flex; align-items: center; justify-content: center;
       font-size: 1.8em; font-weight: bold;
@@ -80,11 +75,7 @@
     }
     .phone-highlight i { color: #25d366; margin-right: 10px; }
 
-    h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-      text-align: center;
-    }
+    h2 { font-size: 2em; margin-bottom: 30px; text-align: center; }
 
     /* Produtos - Slider */
     .products-section { padding: 40px 5%; position: relative; }
@@ -142,21 +133,37 @@
     .slider-btn.left { left: 10px; }
     .slider-btn.right { right: 10px; }
 
-    /* FAQ, Depoimentos, Localização (mantidos iguais) */
-    .faq-section, .testimonials-section, .location-section { padding: 40px 5%; }
+    /* FAQ */
+    .faq-section { padding: 40px 5%; }
     .faq-accordion { max-width: 800px; margin: auto; border: 1px solid #ddd; border-radius: 8px; }
     .faq-item { border-bottom: 1px solid #ddd; }
     .faq-question { background: #f9f9f9; padding: 15px; display: flex; justify-content: space-between; cursor: pointer; }
     .faq-answer { background: #fff; padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .faq-question.active + .faq-answer { max-height: 200px; padding-bottom: 15px; }
 
+    /* Depoimentos */
+    .testimonials-section { padding: 40px 5%; }
     .testimonial-content { display: flex; flex-wrap: wrap; gap: 30px; }
     .video-container { flex: 1; min-width: 300px; }
     .video-container video { width: 100%; border-radius: 8px; }
     .quotes-container { flex: 2; background: #fff; padding: 20px; border-radius: 8px; }
 
-    .location-section { background: #fff; text-align: center; }
+    /* Localização */
+    .location-section { padding: 40px 5%; background: #fff; text-align: center; }
     .location-image { width: 100%; max-width: 800px; border-radius: 8px; margin-bottom: 20px; }
+    .address-details { margin-top: 20px; }
+    .address-details p { margin: 5px 0; }
+    .directions-btn {
+      display: inline-block;
+      background: #3e3e3e;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 15px;
+    }
+    .directions-btn:hover { background: #555; }
 
     /* Responsividade */
     @media (max-width: 768px) {
@@ -255,16 +262,16 @@
     </section>
 
     <section class="location-section">
-            <h2>Nossa Localização</h2>
-            <img src="imagem-local.jpg" alt="Imagem do local da loja" class="location-image">
-            <div class="address-details">
-                <p><strong>A Singer Latina</strong></p>
-                <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
-                    <i class="fas fa-map-marked-alt"></i> Obter Rotas
-                </a>
-            </div>
-        </section>
+      <h2>Nossa Localização</h2>
+      <img src="imagem-local.jpg" alt="Imagem do local da loja" class="location-image">
+      <div class="address-details">
+        <p><strong>A Singer Latina</strong></p>
+        <p>R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP, 03732-040</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Firmiano%20Cardoso,%20276%20-%20Chácara%20Cruzeiro%20do%20Sul,%20São%20Paulo%20-%20SP,%2003732-040" target="_blank" class="directions-btn">
+          <i class="fas fa-map-marked-alt"></i> Obter Rotas
+        </a>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -297,15 +304,18 @@
     }
 
     rightBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % totalItems;
-      updateSlider();
+      if (currentIndex < totalItems - 1) {
+        currentIndex++;
+        updateSlider();
+      }
     });
 
     leftBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-      updateSlider();
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
     });
   </script>
 </body>
 </html>
-
