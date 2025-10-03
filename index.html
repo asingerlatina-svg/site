@@ -54,14 +54,10 @@
     .slider-container {
       max-width: 400px; margin: auto; overflow: hidden; position: relative;
     }
-
-    /* garantir que o slider fique abaixo dos botões */
     .slider {
       display: flex; transition: transform 0.5s ease-in-out;
-      z-index: 1; /* abaixo dos botões */
-      position: relative;
+      z-index: 1; position: relative;
     }
-
     .product-card {
       min-width: 100%; background: #fff; border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -76,19 +72,15 @@
       padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 700;
     }
     .btn-product:hover { background-color: #555; }
-
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.55); color: #fff;
       border: none; padding: 10px 15px; cursor: pointer;
       border-radius: 50%; font-size: 1.2em;
-      z-index: 999; /* colocar os botões na frente de tudo */
-      display: flex; align-items: center; justify-content: center;
+      z-index: 999; display: flex; align-items: center; justify-content: center;
     }
     .slider-btn.left { left: 10px; }
     .slider-btn.right { right: 10px; }
-
-    /* deixar foco visível para acessibilidade */
     .slider-btn:focus { outline: 3px solid rgba(37,211,102,0.25); }
 
     /* FAQ */
@@ -99,12 +91,16 @@
     .faq-answer { background: #fff; padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .faq-question.active + .faq-answer { max-height: 200px; padding-bottom: 15px; }
 
-    /* Depoimentos */
+    /* Canal + Horários */
     .testimonials-section { padding: 40px 5%; }
     .testimonial-content { display: flex; flex-wrap: wrap; gap: 30px; }
-    .video-container { flex: 1; min-width: 300px; }
-    .video-container video { width: 100%; border-radius: 8px; }
-    .quotes-container { flex: 2; background: #fff; padding: 20px; border-radius: 8px; }
+    .video-container iframe { width: 100%; height: 315px; border-radius: 8px; }
+    .schedule-container {
+      flex: 2; background: #fff; padding: 20px; border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .schedule-container ul { list-style: none; padding: 0; }
+    .schedule-container li { margin: 8px 0; font-size: 1.1em; }
 
     /* Localização */
     .location-section { padding: 40px 5%; background: #fff; text-align: center; }
@@ -121,6 +117,7 @@
     @media (max-width: 768px) {
       .services-section { flex-direction: column; gap: 20px; }
       .phone-highlight { font-size: 1.4em; padding: 15px 20px; }
+      .testimonial-content { flex-direction: column; }
     }
   </style>
 </head>
@@ -197,18 +194,19 @@
     </section>
 
     <section class="testimonials-section">
-      <h2>Visite o Canal no YouTube</h2>
+      <h2>Canal no YouTube & Horários de Atendimento</h2>
       <div class="testimonial-content">
         <div class="video-container">
-          <video controls>
-            <source src="caminho/para/video.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-          </video>
+          <!-- Substitua o link do src pelo link do vídeo ou canal -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="quotes-container">
-          <blockquote>"Ótima experiência! Recomendo a todos!"</blockquote>
-          <blockquote>"Profissionais incríveis! Fizeram um excelente trabalho na minha máquina."</blockquote>
-          <blockquote>"Serviço de alta qualidade! Atendimento rápido e eficiente."</blockquote>
+        <div class="schedule-container">
+          <h3>Horários de Atendimento</h3>
+          <ul>
+            <li><strong>Segunda a Sexta:</strong> 9h às 18h</li>
+            <li><strong>Sábado:</strong> 9h às 13h</li>
+            <li><strong>Domingo:</strong> Fechado</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -268,8 +266,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
