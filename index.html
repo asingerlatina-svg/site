@@ -56,7 +56,7 @@
     }
     .slider {
       display: flex; transition: transform 0.5s ease-in-out;
-      position: relative;
+      z-index: 1; position: relative;
     }
     .product-card {
       min-width: 100%; background: #fff; border-radius: 8px;
@@ -77,8 +77,7 @@
       background: rgba(0,0,0,0.55); color: #fff;
       border: none; padding: 10px 15px; cursor: pointer;
       border-radius: 50%; font-size: 1.2em;
-      z-index: 999;
-      display: flex; align-items: center; justify-content: center;
+      z-index: 999; display: flex; align-items: center; justify-content: center;
     }
     .slider-btn.left { left: 10px; }
     .slider-btn.right { right: 10px; }
@@ -92,17 +91,10 @@
     .faq-answer { background: #fff; padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .faq-question.active + .faq-answer { max-height: 200px; padding-bottom: 15px; }
 
-    /* YouTube + Horários */
+    /* Canal */
     .testimonials-section { padding: 40px 5%; }
-    .testimonial-content { display: flex; flex-wrap: wrap; gap: 30px; }
-    .video-container { flex: 1; min-width: 300px; }
-    .video-container iframe { width: 100%; height: 250px; border-radius: 8px; }
-    .schedule-container {
-      flex: 1; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .schedule-container h3 { margin-bottom: 15px; }
-    .schedule-container ul { list-style: none; }
-    .schedule-container li { margin: 8px 0; }
+    .testimonial-content { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+    .video-container iframe { width: 100%; min-height: 300px; border-radius: 8px; }
 
     /* Localização */
     .location-section { padding: 40px 5%; background: #fff; text-align: center; }
@@ -116,10 +108,18 @@
     }
     .directions-btn:hover { background: #555; }
 
+    /* Rodapé */
+    footer {
+      background-color: #3e3e3e; color: #fff; text-align: center;
+      padding: 20px 10px; margin-top: 40px;
+    }
+    footer p { margin: 5px 0; }
+    footer a { color: #25d366; text-decoration: none; font-weight: bold; }
+    footer a:hover { text-decoration: underline; }
+
     @media (max-width: 768px) {
       .services-section { flex-direction: column; gap: 20px; }
       .phone-highlight { font-size: 1.4em; padding: 15px 20px; }
-      .testimonial-content { flex-direction: column; }
     }
   </style>
 </head>
@@ -196,22 +196,10 @@
     </section>
 
     <section class="testimonials-section">
-      <h2>Canal no YouTube & Horários de Atendimento</h2>
+      <h2>Canal no YouTube</h2>
       <div class="testimonial-content">
         <div class="video-container">
-          <!-- Exemplo de vídeo único -->
-          <iframe src="https://www.youtube.com/embed/uH1GkwINwSQ"
-                  frameborder="0"
-                  allowfullscreen></iframe>
-          <!-- Para usar seu canal, troque o "abcd1234" pelo ID do seu vídeo -->
-        </div>
-        <div class="schedule-container">
-          <h3>Horários de Atendimento</h3>
-          <ul>
-            <li><strong>Segunda a Sexta:</strong> 9h às 18h</li>
-            <li><strong>Sábados e Domingos:</strong> 13h às 18h</li>
-            <li><strong>Feriados:</strong> Fechado</li>
-          </ul>
+          <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" title="YouTube video" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -228,6 +216,14 @@
       </div>
     </section>
   </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p><i class="fas fa-phone-alt"></i> (11) 98098-4748</p>
+    <p><i class="fas fa-map-marker-alt"></i> R. Firmiano Cardoso, 276 - Chácara Cruzeiro do Sul, São Paulo - SP</p>
+    <p><a href="https://wa.me/5511980984748" target="_blank"><i class="fab fa-whatsapp"></i> Fale conosco no WhatsApp</a></p>
+    <p>&copy; 2025 A Singer Latina - Todos os direitos reservados</p>
+  </footer>
 
   <script>
     /* FAQ toggle */
@@ -258,12 +254,10 @@
     function updateSlider() {
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
-
     rightBtn.addEventListener('click', () => {
       currentIndex = (currentIndex + 1) % totalItems;
       updateSlider();
     });
-
     leftBtn.addEventListener('click', () => {
       currentIndex = (currentIndex - 1 + totalItems) % totalItems;
       updateSlider();
@@ -271,5 +265,3 @@
   </script>
 </body>
 </html>
-
-
